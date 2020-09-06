@@ -1,10 +1,10 @@
 import React from 'react';
+import NavigationItems from '../NavigationItems/NavigationItems';
 
 const TopBar = () =>
     <header>
-        <p>Home</p>
-        <p>Skills</p>
-        <p>Work Experience</p>
-        <p>About me</p>
-        <p>Contact</p>
+        <p>Angel Valdez - Software Developer</p>
+        <NavigationItems />
     </header>
+
+export default TopBar;
