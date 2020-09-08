@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TopBar from '../components/Navigation/TopBar/TopBar';
+import Home from '../components/Sections/Home/Home';
 
 class Layout extends Component {
 
@@ -7,6 +8,7 @@ class Layout extends Component {
         return (
             <>
                 <TopBar />
+                <Home / >
             </>
         )
     }
