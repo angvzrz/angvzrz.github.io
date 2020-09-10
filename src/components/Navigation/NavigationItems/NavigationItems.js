@@ -1,8 +1,10 @@
 import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem';
 
+import classes from './NavigationItems.module.css';
+
 const NavigationItems = () =>
-    <ul>
+    <ul className={classes.NavigationItems}>
         <NavigationItem>Home</NavigationItem>
         <NavigationItem>About</NavigationItem>
         <NavigationItem>Work Experience</NavigationItem>
