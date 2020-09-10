@@ -1,9 +1,10 @@
 import React from 'react';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import MyLogo from '../NavigationItems/MyLogo/MyLogo';
 
 const TopBar = () =>
     <header>
-        <p>Angel Valdez - Software Developer</p>
+        <MyLogo>Angel Valdez - Software Developer</MyLogo>
         <NavigationItems />
     </header>
 
