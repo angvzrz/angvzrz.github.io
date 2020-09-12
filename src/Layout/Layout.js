@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TopBar from '../components/Navigation/TopBar/TopBar';
 import Home from '../components/Sections/Home/Home';
+import About from '../components/Sections/About/About';
 
 class Layout extends Component {
 
@@ -8,7 +9,8 @@ class Layout extends Component {
         return (
             <>
                 <TopBar />
-                <Home / >
+                <Home />
+                <About />
             </>
         )
     }
