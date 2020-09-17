@@ -14,9 +14,6 @@ const CanvasAnimation = props => {
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
         ctx.beginPath();
-        ctx.arc(canvas.width - 200, canvas.height - 100, 350, 0, Math.PI * 2, false);
-        ctx.strokeStyle = '#005B9F';
-        ctx.stroke();
         ctx.closePath();
     }, []);
     
