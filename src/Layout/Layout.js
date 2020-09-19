@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import TopBar from '../components/Navigation/TopBar/TopBar';
 import Home from '../components/Sections/Home/Home';
 import About from '../components/Sections/About/About';
+import Experience from '../components/Sections/Experience/Experience';
+import Skills from '../components/Sections/Skills/Skills';
+import Contact from '../components/Sections/Contact/Contact';
 
 class Layout extends Component {
 
@@ -11,6 +14,9 @@ class Layout extends Component {
                 <TopBar />
                 <Home />
                 <About />
+                <Experience/>
+                <Skills />
+                <Contact />
             </>
         )
     }
