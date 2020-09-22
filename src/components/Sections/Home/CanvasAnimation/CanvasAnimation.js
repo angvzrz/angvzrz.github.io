@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 
-
 const randomIntFromRange = (min, max) => 
     Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -21,7 +20,31 @@ const clouds = [
     {id:'n', x: 1180, y: 750, radius: 20},
     {id:'o', x: 1220, y: 790, radius: 20},
     {id:'p', x: 1260, y: 820, radius: 20},
-]
+];
+
+
+const draw = (ctx, speed) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillStyle = '#E8E8E8';
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    clouds.forEach(circleProps => {
+        
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(
+        circleProps.x - speed,
+        circleProps.y - 200, 
+        circleProps.radius + 20, 
+        0, Math.PI * 2, false);
+        ctx.fill();
+
+        // ctx.font = '20px Arial';
+        // ctx.fillStyle = 'red';
+        // ctx.fillText(circleProps.id, circleProps.x, circleProps.y - 200);
+        ctx.closePath();
+    });
+}
 
 const CanvasAnimation = props => {
     const canvasRef = useRef(null);
@@ -30,48 +53,37 @@ const CanvasAnimation = props => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth;
+        canvas.width = window.innerWidth - 10;
         canvas.height = window.innerHeight - 60;
+        
 
-        ctx.fillStyle = '#E8E8E8';
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-        let startPointX = canvas.width / 2;
-        let startPointY = canvas.height / 2;
-
+        console.log(canvas.width)
 
         ctx.fillStyle = 'blue';
-        ctx.beginPath();
         ctx.moveTo(940, 330);
-        ctx.lineTo(650, 800);
-        ctx.lineTo(1400, 770);
-        ctx.closePath();
-        ctx.fill();
+        // ctx.beginPath();
+        // ctx.lineTo(650, 800);
+        // ctx.lineTo(1400, 770);
+        // ctx.closePath();
+        // ctx.fill();
 
-        clouds.forEach(circleProps => {
-            ctx.fillStyle = 'blue';
-            ctx.beginPath();
-            ctx.arc(
-                circleProps.x, 
-                circleProps.y - 200, 
-                circleProps.radius + 20, 
-                0, Math.PI * 2, false);            
-            ctx.fill();
-            ctx.font = '20px Arial';
-            ctx.fillStyle = 'red';
-            // ctx.fillText(circleProps.id, circleProps.x, circleProps.y - 200);
-            ctx.closePath();
-        });
-    }, []);
+        let animationFrameId = null;
+        let speed = 0;
+        const render = () => {            
+            speed += 0.5;
+            draw(ctx, speed);
+            animationFrameId = requestAnimationFrame(render);
+        };
+        render();
+
+        return() => {
+            cancelAnimationFrame(animationFrameId);
+        }
+
+    }, [draw]);
     
 
     return <canvas ref={canvasRef} {...props}></canvas>;
-};
-
-const animate = () => {
-    requestAnimationFrame(animate);
-
-
 };
 
 export default CanvasAnimation;
