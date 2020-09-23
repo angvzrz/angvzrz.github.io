@@ -23,6 +23,45 @@ const clouds = [
 ];
 
 
+class Rhombus {
+    xCenter = 0;
+    yCenter = 0;
+    size = 0;
+
+    constructor(xCenter, yCenter, size) {
+        this.xCenter = xCenter;
+        this.yCenter = yCenter;
+        this.size = size;
+    }
+}
+
+const drawRhombus = (ctx, xCenter, yCenter, sideLength, rotation) => {
+    const numberOfSides = 4;
+
+    ctx.beginPath();
+    ctx.moveTo(
+        xCenter + sideLength * Math.cos(rotation), 
+        yCenter + sideLength * Math.sin(rotation)
+    );
+
+    ctx.lineTo(
+        xCenter + (sideLength - 10) * Math.cos(rotation + (1 * 2 * Math.PI / numberOfSides)),
+        yCenter + (sideLength - 10) * Math.sin(rotation + (1 * 2 * Math.PI / numberOfSides))
+    );    
+    ctx.lineTo(
+        xCenter + (sideLength + 10) * Math.cos(rotation + (2 * 2 * Math.PI / numberOfSides)),
+        yCenter + (sideLength + 10) * Math.sin(rotation + (2 * 2 * Math.PI / numberOfSides))
+    );
+    ctx.lineTo(
+        xCenter + (sideLength - 10) * Math.cos(rotation + (3 * 2 * Math.PI / numberOfSides)),
+        yCenter + (sideLength - 10) * Math.sin(rotation + (3 * 2 * Math.PI / numberOfSides))
+    );
+    
+    ctx.closePath();
+    ctx.fillStyle = 'purple';
+    ctx.fill();
+}
+
 const draw = (ctx, speed) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.fillStyle = '#E8E8E8';
@@ -44,6 +83,8 @@ const draw = (ctx, speed) => {
         // ctx.fillText(circleProps.id, circleProps.x, circleProps.y - 200);
         ctx.closePath();
     });
+
+    drawRhombus(ctx, 100, 500, 50, 90);
 }
 
 const CanvasAnimation = props => {
@@ -56,7 +97,6 @@ const CanvasAnimation = props => {
         canvas.width = window.innerWidth - 10;
         canvas.height = window.innerHeight - 60;
         
-
         console.log(canvas.width)
 
         ctx.fillStyle = 'blue';
