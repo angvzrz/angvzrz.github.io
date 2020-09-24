@@ -22,20 +22,55 @@ const clouds = [
     {id:'p', x: 1260, y: 820, radius: 20},
 ];
 
+const kiteColors = [
+    '#D9042B',
+    '#049DD9',
+    '#0487D9',
+    '#F2CB05',
+    '#F27405'
+];
 
-class Rhombus {
-    xCenter = 0;
-    yCenter = 0;
-    size = 0;
-
-    constructor(xCenter, yCenter, size) {
+/**
+ * 
+ * class Rhombus {
+    constructor(ctx, xCenter, yCenter, sideLength, rotation, color) {
+        this.ctx = ctx;
         this.xCenter = xCenter;
         this.yCenter = yCenter;
-        this.size = size;
+        this.sideLength = sideLength;
+        this.rotation = rotation;
+        this.color = color;
     }
-}
 
-const drawRhombus = (ctx, xCenter, yCenter, sideLength, rotation) => {
+    draw() {
+        const numberOfSides = 4;
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(
+            this.xCenter + this.sideLength * Math.cos(this.rotation), 
+            this.yCenter + this.sideLength * Math.sin(this.rotation)
+        );
+
+        this.ctx.lineTo(
+            this.xCenter + (this.sideLength - 10) * Math.cos(this.rotation + (1 * 2 * Math.PI / numberOfSides)),
+            this.yCenter + (this.sideLength - 10) * Math.sin(this.rotation + (1 * 2 * Math.PI / numberOfSides))
+        );    
+        this.ctx.lineTo(
+            this.xCenter + (this.sideLength + 10) * Math.cos(this.rotation + (2 * 2 * Math.PI / numberOfSides)),
+            this.yCenter + (this.sideLength + 10) * Math.sin(this.rotation + (2 * 2 * Math.PI / numberOfSides))
+        );
+        this.ctx.lineTo(
+            this.xCenter + (this.sideLength - 10) * Math.cos(this.rotation + (3 * 2 * Math.PI / numberOfSides)),
+            this.yCenter + (this.sideLength - 10) * Math.sin(this.rotation + (3 * 2 * Math.PI / numberOfSides))
+        );
+        
+        this.ctx.closePath();
+        this.ctx.fillStyle = this.color;
+        this.ctx.fill();
+    }
+}*/
+
+const drawRhombus = (ctx, xCenter, yCenter, sideLength, rotation, color) => {
     const numberOfSides = 4;
 
     ctx.beginPath();
@@ -58,7 +93,7 @@ const drawRhombus = (ctx, xCenter, yCenter, sideLength, rotation) => {
     );
     
     ctx.closePath();
-    ctx.fillStyle = 'purple';
+    ctx.fillStyle = color;
     ctx.fill();
 }
 
@@ -84,7 +119,13 @@ const draw = (ctx, speed) => {
         ctx.closePath();
     });
 
-    drawRhombus(ctx, 100, 500, 50, 90);
+    const xCenter = ctx.canvas.width / 2;
+
+    drawRhombus(ctx, xCenter - speed, ctx.canvas.height / 2, 40, Math.PI, kiteColors[0]);
+    drawRhombus(ctx, xCenter - speed + 85, ctx.canvas.height / 2, 35, Math.PI, kiteColors[1]);
+    drawRhombus(ctx, xCenter - speed + 160, ctx.canvas.height / 2, 30, Math.PI, kiteColors[2]);
+    drawRhombus(ctx, xCenter - speed + 225, ctx.canvas.height / 2, 25, Math.PI, kiteColors[3]);
+    drawRhombus(ctx, xCenter - speed + 280, ctx.canvas.height / 2, 20, Math.PI, kiteColors[4]);
 }
 
 const CanvasAnimation = props => {
