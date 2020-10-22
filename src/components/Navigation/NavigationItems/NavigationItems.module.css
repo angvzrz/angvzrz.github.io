@@ -1,5 +1,5 @@
 .NavigationItems {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    margin: 10px;
+    color: #F2F2F2;
+    display: flex;
+    justify-content: space-between;
 }

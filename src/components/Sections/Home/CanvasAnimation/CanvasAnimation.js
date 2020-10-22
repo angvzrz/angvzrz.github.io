@@ -174,7 +174,7 @@ const draw = (ctx, speed) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.fillStyle = '#E8E8E8';
 
-    const currentTime = new Date() * 0.00009;
+    const currentTime = new Date() * 0.000005;
 
     const noiseX = noise(currentTime) * ctx.canvas.width;
     const noiseY = noise(currentTime);
@@ -182,10 +182,10 @@ const draw = (ctx, speed) => {
     const rotationAngle = noise(currentTime) * Math.pow(2, Math.PI);
     // const rotationAngle = 3.14159;
 
-    // if (frameCount === 50) {
-    //     sign = Math.round(Math.sin(Math.sin(noiseX)));
-    //     frameCount = 0;
-    // }
+    if (frameCount === 50) {
+        sign = Math.round(Math.sin(Math.sin(noiseX)));
+        frameCount = 0;
+    }
 
     transitionX = transitionX + Math.cos(changeSign(sign, speed)) * 5;
     transitionY = transitionY + Math.sin(changeSign(sign, speed)) * 5;

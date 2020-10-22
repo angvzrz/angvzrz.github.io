@@ -1,3 +1,10 @@
 .TopBar {
-    
+    background-color: #021E73;
+    display: flex;
+    justify-content: space-between;
+}
+
+.TopBar>*:first-child {
+    align-self: flex-start;
+    margin-right: auto;
 }
