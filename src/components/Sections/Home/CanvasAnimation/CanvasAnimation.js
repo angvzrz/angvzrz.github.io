@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from 'react';
+import { openSimplexNoise } from '../../../../utils/OpenSimplexNoise/SimplexNoise';
+import { noise } from '@chriscourses/perlin-noise';
 
 const randomIntFromRange = (min, max) => 
     Math.floor(Math.random() * (max - min + 1) + min);
@@ -70,38 +72,7 @@ const kiteColors = [
     }
 }*/
 
-const drawRhombus = (ctx, xCenter, yCenter, sideLength, rotation, color) => {
-    const numberOfSides = 4;
-
-    ctx.beginPath();
-    ctx.moveTo(
-        xCenter + sideLength * Math.cos(rotation), 
-        yCenter + sideLength * Math.sin(rotation)
-    );
-
-    ctx.lineTo(
-        xCenter + (sideLength - 10) * Math.cos(rotation + (1 * 2 * Math.PI / numberOfSides)),
-        yCenter + (sideLength - 10) * Math.sin(rotation + (1 * 2 * Math.PI / numberOfSides))
-    );    
-    ctx.lineTo(
-        xCenter + (sideLength + 10) * Math.cos(rotation + (2 * 2 * Math.PI / numberOfSides)),
-        yCenter + (sideLength + 10) * Math.sin(rotation + (2 * 2 * Math.PI / numberOfSides))
-    );
-    ctx.lineTo(
-        xCenter + (sideLength - 10) * Math.cos(rotation + (3 * 2 * Math.PI / numberOfSides)),
-        yCenter + (sideLength - 10) * Math.sin(rotation + (3 * 2 * Math.PI / numberOfSides))
-    );
-    
-    ctx.closePath();
-    ctx.fillStyle = color;
-    ctx.fill();
-}
-
-const draw = (ctx, speed) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = '#E8E8E8';
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
+const drawClouds = (ctx, speed) => {
     clouds.forEach(circleProps => {
         
         ctx.fillStyle = 'blue';
@@ -118,14 +89,136 @@ const draw = (ctx, speed) => {
         // ctx.fillText(circleProps.id, circleProps.x, circleProps.y - 200);
         ctx.closePath();
     });
+}
 
-    const xCenter = ctx.canvas.width / 2;
+const drawRhombus = (ctx, xCenter, yCenter, sideLength, rotation, color) => {
+    const numberOfSides = 4;
+    // uncomment to enter rotation in degrees. 
+	// rotation *= Math.PI/180;
 
-    drawRhombus(ctx, xCenter - speed, ctx.canvas.height / 2, 40, Math.PI, kiteColors[0]);
-    drawRhombus(ctx, xCenter - speed + 85, ctx.canvas.height / 2, 35, Math.PI, kiteColors[1]);
-    drawRhombus(ctx, xCenter - speed + 160, ctx.canvas.height / 2, 30, Math.PI, kiteColors[2]);
-    drawRhombus(ctx, xCenter - speed + 225, ctx.canvas.height / 2, 25, Math.PI, kiteColors[3]);
-    drawRhombus(ctx, xCenter - speed + 280, ctx.canvas.height / 2, 20, Math.PI, kiteColors[4]);
+    ctx.beginPath();
+    ctx.moveTo(
+        xCenter + sideLength * Math.cos(rotation), 
+        yCenter + sideLength * Math.sin(rotation)
+    );
+    ctx.lineTo(
+        xCenter + (sideLength - 10) * Math.cos(rotation + (1 * 2 * Math.PI / numberOfSides)),
+        yCenter + (sideLength - 10) * Math.sin(rotation + (1 * 2 * Math.PI / numberOfSides))
+    );    
+    ctx.lineTo(
+        xCenter + (sideLength + 10) * Math.cos(rotation + (2 * 2 * Math.PI / numberOfSides)),
+        yCenter + (sideLength + 10) * Math.sin(rotation + (2 * 2 * Math.PI / numberOfSides))
+    );
+    ctx.lineTo(
+        xCenter + (sideLength - 10) * Math.cos(rotation + (3 * 2 * Math.PI / numberOfSides)),
+        yCenter + (sideLength - 10) * Math.sin(rotation + (3 * 2 * Math.PI / numberOfSides))
+    );
+    ctx.strokeStyle = 'blue';
+    ctx.stroke();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.closePath();
+}
+
+const rhombusLengths = [40, 35, 30, 25, 20];
+let rhombusDistances = [0, 85, 160, 225, 280];
+let previousRotationAngle = 0;
+
+const distance = (xA, yA, xB, yB) => {
+    const horizontalDistance = (xA - xB);
+    const verticalDistance = (yA - yB);
+
+    return Math.sqrt(Math.pow(horizontalDistance, 2) + Math.pow(verticalDistance, 2));
+}
+
+const polarToCartesian = (angle, distance) => {
+    return {
+        x: distance * Math.cos(angle),
+        y: distance * Math.sin(angle)
+    }
+}
+
+const cartesianToPolar = (x1, y1, x2, y2) => {
+    const x = x2 - x1;
+    const y = y2 - y1;
+
+    return {
+        distance: Math.sqrt(Math.pow(2, x) + Math.pow(2, y)),
+        angle: Math.atan2(y, x)
+    };
+}
+
+const degreesToRadians = (degrees) => {
+    return Math.PI / 180;
+}
+
+const changeSign = (sign, number) => {
+    if (sign === 0) {
+        sign = 1;
+    }
+    else if (sign === -0) {
+        sign = -1;
+    }
+
+    return sign * number;
+}
+
+let transitionX = 0;
+let transitionY = (window.innerHeight - 60) / 4 ;
+let previousX = 0;
+let previousY = 0;
+let frameCount = 0;
+let sign = 1;
+
+const draw = (ctx, speed) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillStyle = '#E8E8E8';
+
+    const currentTime = new Date() * 0.00009;
+
+    const noiseX = noise(currentTime) * ctx.canvas.width;
+    const noiseY = noise(currentTime);
+
+    const rotationAngle = noise(currentTime) * Math.pow(2, Math.PI);
+    // const rotationAngle = 3.14159;
+
+    // if (frameCount === 50) {
+    //     sign = Math.round(Math.sin(Math.sin(noiseX)));
+    //     frameCount = 0;
+    // }
+
+    transitionX = transitionX + Math.cos(changeSign(sign, speed)) * 5;
+    transitionY = transitionY + Math.sin(changeSign(sign, speed)) * 5;
+    let rhombusX = transitionX + noiseX;
+    let rhombusY = transitionY * noiseY;
+
+    // if ((rhombusX >= ctx.canvas.width - 70) || (rhombusX <= 70)) {
+    //     rhombusX = changeSign(Math.sign(rhombusX), rhombusX);
+    // }
+
+    if ((rhombusY >= ctx.canvas.height - 70) || (rhombusY <= 70)) {
+        rhombusY = changeSign(Math.sign(rhombusY), rhombusY);
+    }
+
+    for (let i = 0; i < 1; i++) {
+        const rhombusLength = rhombusLengths[i];
+        const angle = cartesianToPolar(previousX, previousY, rhombusX, rhombusY).angle;
+        console.log(angle);
+
+        drawRhombus(
+            ctx, 
+            rhombusX,
+            rhombusY,
+            rhombusLength, 
+            angle,
+            kiteColors[i]
+        );
+    }
+
+    previousRotationAngle = rotationAngle;
+    previousX = rhombusX;
+    previousY = rhombusY;
+    frameCount++;
 }
 
 const CanvasAnimation = props => {
@@ -137,8 +230,6 @@ const CanvasAnimation = props => {
 
         canvas.width = window.innerWidth - 10;
         canvas.height = window.innerHeight - 60;
-        
-        console.log(canvas.width)
 
         ctx.fillStyle = 'blue';
         ctx.moveTo(940, 330);
@@ -150,9 +241,11 @@ const CanvasAnimation = props => {
 
         let animationFrameId = null;
         let speed = 0;
+        const simplexSeed = Date.now();
+        
         const render = () => {            
-            speed += 0.5;
-            draw(ctx, speed);
+            speed += 0.03;
+            draw(ctx, speed, simplexSeed);
             animationFrameId = requestAnimationFrame(render);
         };
         render();
