@@ -203,7 +203,6 @@ const draw = (ctx, speed) => {
     for (let i = 0; i < 1; i++) {
         const rhombusLength = rhombusLengths[i];
         const angle = cartesianToPolar(previousX, previousY, rhombusX, rhombusY).angle;
-        console.log(angle);
 
         drawRhombus(
             ctx, 
