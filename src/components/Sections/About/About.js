@@ -6,6 +6,7 @@ import classes from './About.module.css';
 
 const About = () =>
     <div className={classes.About}>
+        <h1>About</h1>
         <img src={profilePic} alt=""/>
         <p>
             I am a Software Developer who is all about tackling into data 

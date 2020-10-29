@@ -172,7 +172,8 @@ let sign = 1;
 
 const draw = (ctx, speed) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = '#E8E8E8';
+    // ctx.fillStyle = 'white';
+    // ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
     const currentTime = new Date() * 0.000005;
 

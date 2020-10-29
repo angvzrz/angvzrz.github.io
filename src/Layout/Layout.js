@@ -6,18 +6,20 @@ import Experience from '../components/Sections/Experience/Experience';
 import Skills from '../components/Sections/Skills/Skills';
 import Contact from '../components/Sections/Contact/Contact';
 
+import classes from './Layout.module.css';
+
 class Layout extends Component {
 
     render() {
         return (
-            <>
+            <div className={classes.Layout}>
                 <TopBar />
                 <Home />
                 <About />
                 <Experience/>
                 <Skills />
                 <Contact />
-            </>
+            </div>
         )
     }
 }

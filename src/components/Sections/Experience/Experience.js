@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Experience = () =>
-    <p>My tasks on my jobs</p>
+    <div>
+        <h1>Experience</h1>
+        <p>My tasks on my jobs</p>
+    </div>
 
 export default Experience;
