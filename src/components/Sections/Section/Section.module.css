@@ -1,4 +1,9 @@
-.title {
+.section {
+    width: 100vw;
+    height: 100vh;
+}
+
+.section .title {
     margin: 0;    
     font-size: 2em;
 }
