@@ -14,7 +14,7 @@ class Layout extends Component {
         return (
             <div className={classes.layout}>
                 <TopBar/>
-                <Home />
+                <Home classNames={classes}/>
                 <About classNames={classes}/>
                 <Experience classNames={classes}/>
                 <Skills classNames={classes}/>

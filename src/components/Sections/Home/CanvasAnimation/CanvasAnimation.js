@@ -228,8 +228,8 @@ const CanvasAnimation = props => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth - 10;
-        canvas.height = window.innerHeight - 60;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
         ctx.fillStyle = 'blue';
         ctx.moveTo(940, 330);

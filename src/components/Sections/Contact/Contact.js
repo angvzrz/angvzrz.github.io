@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Contact = () =>
-    <div>
-        <h1>Contact</h1>
-        <p>My contact information and contact form</p>
+const Contact = props =>
+    <div className={props.classNames.section}>
+        <h1 className={props.classNames.title}>Contact</h1>
+        <p className={props.classNames.content}>My contact information and contact form</p>
     </div>
     
 

@@ -6,11 +6,19 @@
 }
 
 .section {
+    display: flex;
     width: 100vw;
     height: 100vh;
 }
 
 .title {
-    margin-top: 50px;
-    margin-left: 50px;
+    margin-top: 5vh;
+    margin-left: 11vw;
+    font-size: 4em;
+}
+
+.content {
+    margin-top: 2vh;
+    margin-left: 14vw;
+    font-size: 2em;
 }

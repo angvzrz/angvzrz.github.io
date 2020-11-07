@@ -3,9 +3,9 @@ import React from 'react';
 import classes from './Home.module.scss';
 import CanvasAnimation from './CanvasAnimation/CanvasAnimation';
 
-const Home = () => {
+const Home = props => {
     return (
-        <div className={classes.Home}>
+        <div className={[props.classNames.section, classes.home].join(" ")}>
             <div className={classes.introduction}>
                 <h1 className={classes.greeting}>Hello, I'm Angel</h1>
                 <p className={classes.offer}>I enjoy building software</p>

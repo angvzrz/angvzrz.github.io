@@ -8,7 +8,7 @@ const About = (props) =>
     <div className={props.classNames.section}>
         <h1 className={props.classNames.title}>About</h1>
         <img className={classes.profilepic} src={profilePic} alt=""/>
-        <p>
+        <p className={props.classNames.content}>
             I am a Software Developer who is all about tackling into data 
             and graphics problems in the best suitable way.
         </p>
