@@ -1,0 +1,6 @@
+.sectionPicture {
+    position: absolute;
+    width: 20%;
+    right: 100px;
+    z-index: 10;
+}

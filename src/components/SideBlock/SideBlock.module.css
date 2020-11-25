@@ -1,4 +1,6 @@
 .sideblock {
+    position: relative;
     width: 50%;
     background-color: #0cf;
+    z-index: 1;
 }
