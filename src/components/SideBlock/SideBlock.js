@@ -1,8 +1,10 @@
 import React from 'react';
 
+import SectionIcon from './SectionIcon/SectionIcon';
 import classes from './SideBlock.module.css';
 
 const SideBlock = () =>
-    <div className={classes.sideblock}></div>
+    <div className={classes.sideblock}>
+    </div>
 
 export default SideBlock;
