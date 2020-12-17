@@ -8,9 +8,8 @@ import classes from './About.module.css';
 
 const About = (props) =>
     <div className={props.classNames.section}>
-        <SideBlock />
+        <SideBlock iconFileLocation={profilePic}/>
         <h1 className={props.classNames.title}>About</h1>
-        <img className={classes.profilepic} src={profilePic} alt=""/>
         <p className={props.classNames.content}>
             I am a Software Developer who is all about tackling into data 
             and graphics problems in the best suitable way.

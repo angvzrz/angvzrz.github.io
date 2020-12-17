@@ -1,15 +1,18 @@
 import React from 'react';
 
-import mw_experience from '../../../assets/images/sections_pictures/mw_experience.svg';
 import classes from './SectionIcon.module.css';
 
-const SectionIcon = (iconFileLocation) =>
+const SectionIcon = (props) => {
+    return (
     <>
         <img 
             className={classes.sectionIcon} 
-            src={mw_experience} 
-            alt="My experience section icon"
+            src={props.iconFileLocation} 
+            style={{...props.iconDimensions}}
+            alt=""
         />
     </>
+    )
+}
 
 export default SectionIcon;

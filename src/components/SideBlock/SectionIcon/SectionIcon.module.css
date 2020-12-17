@@ -1,6 +1,6 @@
 .sectionIcon {
-    position: absolute;
-    width: 20%;
-    right: 100px;
+    display: block;
+    margin: auto;
+    margin-top: 40%;
     z-index: 10;
 }
