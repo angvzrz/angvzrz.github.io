@@ -13,11 +13,11 @@ class Layout extends Component {
         return (
             <div className={classes.layout}>
                 <TopBar/>
-                <Home classNames={classes}/>
-                <About classNames={classes}/>
-                <Experience classNames={classes}/>
-                <Skills classNames={classes}/>
-                <Contact classNames={classes}/>
+                <Home/>
+                <About/>
+                <Experience/>
+                <Skills/>
+                <Contact/>
             </div>
         )
     }

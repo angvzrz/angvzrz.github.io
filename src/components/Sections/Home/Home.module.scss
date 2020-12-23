@@ -1,5 +1,5 @@
 .home {
-    // background-color: white;
+    margin-left: 0;
     color: #F28D35;
     background-image: url('../../../assets/images/CanvasBackground/b2.jpg');
     background-repeat: no-repeat;
@@ -10,8 +10,8 @@
 .introduction {
     position: absolute; 
     z-Index: 1;
-    margin-top: 50px;
-    margin-left: 50px;
+    margin-top: 10vh;
+    margin-left: 8vw;
 }
 
 .greeting {

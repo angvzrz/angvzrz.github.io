@@ -2,10 +2,11 @@ import React from 'react';
 
 import classes from './Home.module.scss';
 import CanvasAnimation from './CanvasAnimation/CanvasAnimation';
+import Section from '../Section/Section';
 
-const Home = props => {
+const Home = () => {
     return (
-        <div className={[props.classNames.section, classes.home].join(" ")}>
+        <div className={classes.home}>
             <div className={classes.introduction}>
                 <h1 className={classes.greeting}>Hello, I'm Angel</h1>
                 <p className={classes.offer}>I enjoy building software</p>
