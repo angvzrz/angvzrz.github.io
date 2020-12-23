@@ -1,6 +1,7 @@
 .sideblock {
-    
+    flex-shrink: 0;
     width: 30%;
+    height: 60%;
     background-color: #0cf;
     z-index: 1;
 }

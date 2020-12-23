@@ -1,9 +1,18 @@
 .section {
+    display: flex;
     width: 100vw;
     height: 100vh;
+    background-color: ghostwhite;
 }
 
 .title {
-    margin: 0;    
-    font-size: 2em;
+    margin-left: 5vw;
+    font-size: 3em;
+}
+
+.content {
+    margin-left: 7vw;
+    margin-right: 7vw;
+    font-size: 1em;
+    
 }
