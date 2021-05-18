@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.12ced01c.chunk.css",
+    "main.js": "/static/js/main.0bec3435.chunk.js",
+    "main.js.map": "/static/js/main.0bec3435.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d32ca624.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d32ca624.js.map",
+    "static/js/2.b7422a22.chunk.js": "/static/js/2.b7422a22.chunk.js",
+    "static/js/2.b7422a22.chunk.js.map": "/static/js/2.b7422a22.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.34c6391ebb9d7e52791499799063d080.js": "/precache-manifest.34c6391ebb9d7e52791499799063d080.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.12ced01c.chunk.css.map": "/static/css/main.12ced01c.chunk.css.map",
+    "static/js/2.b7422a22.chunk.js.LICENSE.txt": "/static/js/2.b7422a22.chunk.js.LICENSE.txt",
+    "static/media/csslogo.png": "/static/media/csslogo.a2ad8b1f.png",
+    "static/media/htmllogo.png": "/static/media/htmllogo.a5094f30.png",
+    "static/media/mw_experience.svg": "/static/media/mw_experience.39a0289f.svg",
+    "static/media/mw_js_skill.svg": "/static/media/mw_js_skill.29c215a5.svg",
+    "static/media/mw_python_skill.svg": "/static/media/mw_python_skill.a90f6e99.svg",
+    "static/media/mw_react_skill.svg": "/static/media/mw_react_skill.882b3278.svg",
+    "static/media/profile_pic.jpg": "/static/media/profile_pic.42cf86bb.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d32ca624.js",
+    "static/js/2.b7422a22.chunk.js",
+    "static/css/main.12ced01c.chunk.css",
+    "static/js/main.0bec3435.chunk.js"
+  ]
+}
